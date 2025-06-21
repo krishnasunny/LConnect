@@ -19,6 +19,7 @@ export default function LawyerProfile() {
     bio: "",
     hourlyRate: "",
     availability: "",
+    youtubeVideoUrl: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -155,13 +156,29 @@ export default function LawyerProfile() {
                   />
                 </div>
                 <div>
-                  <Label>Profile Video</Label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                    <p className="text-gray-500 mb-4">Upload a professional introduction video</p>
-                    <Button variant="outline">
-                      Choose Video File
-                    </Button>
-                  </div>
+                  <Label htmlFor="youtubeVideoUrl">Professional Introduction Video (YouTube)</Label>
+                  <Input
+                    id="youtubeVideoUrl"
+                    name="youtubeVideoUrl"
+                    value={formData.youtubeVideoUrl}
+                    onChange={handleInputChange}
+                    placeholder="https://www.youtube.com/watch?v=..."
+                  />
+                  <p className="text-sm text-gray-500 mt-1">
+                    Paste your YouTube video URL to showcase your professional introduction
+                  </p>
+                  {formData.youtubeVideoUrl && (
+                    <div className="mt-3 border border-gray-200 rounded-lg p-3">
+                      <p className="text-sm font-medium text-gray-700 mb-2">Video Preview:</p>
+                      <div className="aspect-video bg-gray-100 rounded flex items-center justify-center">
+                        <p className="text-gray-500 text-sm">
+                          YouTube video: {formData.youtubeVideoUrl.length > 50 
+                            ? formData.youtubeVideoUrl.substring(0, 50) + "..." 
+                            : formData.youtubeVideoUrl}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </CardContent>

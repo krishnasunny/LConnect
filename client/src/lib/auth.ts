@@ -62,7 +62,15 @@ export class AuthService {
   }
 
   static async logout(): Promise<void> {
-    this.clearAuth();
+    try {
+      // Call the logout endpoint to invalidate token on server
+      await apiRequest("POST", "/api/auth/logout", {});
+    } catch (error) {
+      console.error("Logout API call failed:", error);
+      // Continue with local logout even if API call fails
+    } finally {
+      this.clearAuth();
+    }
   }
 
   static getAuthHeaders(): Record<string, string> {

@@ -134,6 +134,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/auth/logout", authenticateToken, async (req: any, res) => {
+    try {
+      // In a real application, you might want to invalidate the token
+      // For now, we'll just send a success response
+      res.json({ message: "Logged out successfully" });
+    } catch (error) {
+      res.status(500).json({ message: "Server error" });
+    }
+  });
+
   // Admin routes
   app.get("/api/admin/stats", authenticateToken, async (req: any, res) => {
     if (req.user.role !== "admin") {

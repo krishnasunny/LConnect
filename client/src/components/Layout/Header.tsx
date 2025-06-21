@@ -13,9 +13,16 @@ export function Header({ onLoginClick, onSignupClick }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isAuthenticated = AuthService.isAuthenticated();
 
-  const handleLogout = () => {
-    AuthService.logout();
-    window.location.href = "/";
+  const handleLogout = async () => {
+    try {
+      await AuthService.logout();
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Force logout even if API call fails
+      AuthService.clearAuth();
+      window.location.href = "/";
+    }
   };
 
   return (

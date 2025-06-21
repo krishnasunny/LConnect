@@ -111,7 +111,11 @@ This is a full-stack legal consultation platform built with React, Express, and 
 
 ```
 Changelog:
-- June 21, 2025. Initial setup
+- June 21, 2025. Initial setup with database, authentication, and role-based dashboards
+- June 21, 2025. Added logout functionality in header and sidebar
+- June 21, 2025. Replaced video upload with YouTube video link input in lawyer profile
+- June 21, 2025. Fixed authentication token handling in API requests
+- June 21, 2025. Added test users (email: admin@letspart.com, client@test.com, lawyer@test.com - password: "password")
 ```
 
 ## User Preferences
