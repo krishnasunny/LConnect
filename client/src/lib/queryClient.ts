@@ -55,10 +55,10 @@ export const queryClient = new QueryClient({
       refetchInterval: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-      staleTime: 30 * 60 * 1000, // 30 minutes
-      cacheTime: 60 * 60 * 1000, // 1 hour
+      refetchOnMount: false,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes (renamed from cacheTime in v5)
       retry: false,
-      refetchOnMount: true,
     },
     mutations: {
       retry: false,

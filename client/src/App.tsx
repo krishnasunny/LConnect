@@ -95,14 +95,14 @@ function Router() {
           if (!user) return <Login />;
           
           if (user.role === "admin") {
-            window.location.href = "/admin/dashboard";
+            return <AdminDashboard />;
           } else if (user.role === "client") {
-            window.location.href = "/client/dashboard";
+            return <ClientDashboard />;
           } else if (user.role === "lawyer") {
-            window.location.href = "/lawyer/dashboard";
+            return <LawyerDashboard />;
           }
           
-          return null;
+          return <NotFound />;
         })()}
       </Route>
       

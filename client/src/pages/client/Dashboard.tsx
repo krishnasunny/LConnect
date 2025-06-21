@@ -7,7 +7,9 @@ import { Search, CalendarPlus, HelpCircle } from "lucide-react";
 export default function ClientDashboard() {
   const { data: consultations, isLoading } = useQuery({
     queryKey: ["/api/client/consultations"],
-    enabled: true,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading) {

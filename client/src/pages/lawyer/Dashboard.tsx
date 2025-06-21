@@ -8,12 +8,16 @@ import { DollarSign, Calendar, Users, Star } from "lucide-react";
 export default function LawyerDashboard() {
   const { data: stats, isLoading: statsLoading } = useQuery({
     queryKey: ["/api/lawyer/stats"],
-    enabled: true,
+    staleTime: 5 * 60 * 1000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   const { data: consultations, isLoading: consultationsLoading } = useQuery({
     queryKey: ["/api/lawyer/consultations"],
-    enabled: true,
+    staleTime: 5 * 60 * 1000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   if (statsLoading) {
