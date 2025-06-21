@@ -63,7 +63,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/auth/signup", async (req, res) => {
     try {
+      console.log("Signup request body:", req.body);
       const userData = signupSchema.parse(req.body);
+      console.log("Parsed user data:", userData);
       
       // Check if user already exists
       const existingUser = await storage.getUserByEmail(userData.email);
@@ -105,7 +107,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
       });
     } catch (error) {
-      res.status(400).json({ message: "Invalid request" });
+      console.error("Signup error:", error);
+      if (error instanceof Error) {
+        console.error("Error message:", error.message);
+        console.error("Error stack:", error.stack);
+      }
+      res.status(400).json({ message: "Invalid request", error: error.message });
     }
   });
 

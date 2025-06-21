@@ -38,6 +38,8 @@ export const consultations = pgTable("consultations", {
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
   createdAt: true,
+  isActive: true,
+  isVerified: true,
 });
 
 export const loginSchema = z.object({
