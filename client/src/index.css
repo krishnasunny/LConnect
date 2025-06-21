@@ -61,9 +61,20 @@
     @apply border-border;
   }
 
+  html {
+    @apply bg-background;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+    @apply bg-background;
   }
 }
 
@@ -96,3 +107,4 @@
     color: var(--accent-green);
   }
 }
+body { opacity: 1 !important; }

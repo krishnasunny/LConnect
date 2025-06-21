@@ -23,7 +23,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-light-bg">
+    <div className="min-h-screen bg-light-bg w-full">
       <Header onLoginClick={handleLoginClick} onSignupClick={handleSignupClick} />
       
       {/* Hero Section */}
