@@ -7,6 +7,7 @@ import { Search, CalendarPlus, HelpCircle } from "lucide-react";
 export default function ClientDashboard() {
   const { data: consultations, isLoading } = useQuery({
     queryKey: ["/api/client/consultations"],
+    enabled: true,
   });
 
   if (isLoading) {

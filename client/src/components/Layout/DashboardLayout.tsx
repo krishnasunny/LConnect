@@ -1,6 +1,6 @@
 import { Sidebar } from "./Sidebar";
 import { AuthService } from "@/lib/auth";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useLocation } from "wouter";
 
 interface DashboardLayoutProps {
@@ -9,16 +9,16 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [, setLocation] = useLocation();
-  const user = AuthService.getUser();
+  const user = useMemo(() => AuthService.getUser(), []);
 
   useEffect(() => {
     if (!AuthService.isAuthenticated() || !user) {
       setLocation("/login");
       return;
     }
-  }, [user, setLocation]);
+  }, [setLocation]); // Remove user from dependencies to prevent re-renders
 
-  if (!user) {
+  if (!user || !AuthService.isAuthenticated()) {
     return null;
   }
 

@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { AuthService } from "@/lib/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
@@ -11,7 +11,12 @@ interface HeaderProps {
 
 export function Header({ onLoginClick, onSignupClick }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isAuthenticated = AuthService.isAuthenticated();
+  const [isAuthenticated, setIsAuthenticated] = useState(AuthService.isAuthenticated());
+
+  // Update authentication state when component mounts
+  useEffect(() => {
+    setIsAuthenticated(AuthService.isAuthenticated());
+  }, []);
 
   const handleLogout = async () => {
     try {

@@ -15,10 +15,12 @@ interface AdminStats {
 export default function AdminDashboard() {
   const { data: stats, isLoading } = useQuery<AdminStats>({
     queryKey: ["/api/admin/stats"],
+    enabled: true,
   });
 
   const { data: lawyers, isLoading: lawyersLoading } = useQuery({
     queryKey: ["/api/admin/lawyers"],
+    enabled: true,
   });
 
   if (isLoading) {

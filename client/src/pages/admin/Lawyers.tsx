@@ -12,6 +12,7 @@ export default function AdminLawyers() {
 
   const { data: lawyers, isLoading } = useQuery({
     queryKey: ["/api/admin/lawyers"],
+    enabled: true,
   });
 
   const approveMutation = useMutation({
